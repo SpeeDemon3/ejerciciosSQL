@@ -12,7 +12,7 @@ use ejercicio1;
 
 /* Creo las tabla */
 create table if not exists estacion(
-	id_estacion int auto_increment primary key,
+    id_estacion int auto_increment primary key,
     longitud varchar(20),
     latitud varchar(20),
     altitud varchar(20)
@@ -21,11 +21,11 @@ create table if not exists estacion(
 /* Inserto datos en las tabla */
 insert into estacion(id_estacion, longitud, latitud, altitud)
 				values(null, '123', '321', '234'),
-					(null, '823', '361', '434'),
-					(null, '023', '301', '534'),
-                    (null, '4523', '43214', '1234'),
-                    (null, '1253', '234421', '23544'),
-                    (null, '1230', '3241', '2344');
+			              (null, '823', '361', '434'),
+				      (null, '023', '301', '534'),
+                		      (null, '4523', '43214', '1234'),
+                                      (null, '1253', '234421', '23544'),
+                                      (null, '1230', '3241', '2344');
 
 /* Compruebo la tabla con todos los registros insertados */
 select * from estacion;
@@ -35,7 +35,7 @@ drop table estacion_dato;
 
 /* Creo las tabla */
 create table estacion_dato(
-	id_dato int primary key auto_increment not null,
+    id_dato int primary key auto_increment not null,
     fecha timestamp default current_timestamp,
     temp_max int,
     temp_min int,
@@ -51,8 +51,8 @@ create table estacion_dato(
 /* Inserto datos en las tabla */
 /* En el campo fecha utilizando la funcion 'CURRENT_TIMESTAMP' obtengo la fecha y hora actual en la que se inserta el registro*/
 insert into estacion_dato(id_dato, fecha, temp_max, temp_min, precipitaciones, hum_max, hum_min, vel_max, vel_min, id_estacion)
-					values(null, CURRENT_TIMESTAMP, 412, 37, true, 22, 12, 132, 12, 1),
-						  (null, CURRENT_TIMESTAMP, 4142, 37, false, 22, 12, 132, 12, 2),
+		    values(null, CURRENT_TIMESTAMP, 412, 37, true, 22, 12, 132, 12, 1),				  
+	                  (null, CURRENT_TIMESTAMP, 4142, 37, false, 22, 12, 132, 12, 2),
                           (null, CURRENT_TIMESTAMP, 612, 37, true, 22, 12, 132, 12, 3),
                           (null, CURRENT_TIMESTAMP, 912, 37, false, 22, 12, 132, 12, 4),
                           (null, CURRENT_TIMESTAMP, 32, 37, false, 22, 12, 132, 12, 5),
@@ -134,14 +134,14 @@ SELECT DISTINCT id_estacion
 FROM estacion_dato ED
 WHERE EXISTS (
 	SELECT * FROM estacion E
-    WHERE E.id_estacion = ED.id_estacion
-    AND ED.precipitaciones = true
+        WHERE E.id_estacion = ED.id_estacion
+        AND ED.precipitaciones = true
 );
 
 SELECT DISTINCT id_estacion
 FROM estacion
 WHERE id_estacion IN (
-	SELECT id_estacion
+    SELECT id_estacion
     FROM estacion_dato
     WHERE precipitaciones = true
 );
